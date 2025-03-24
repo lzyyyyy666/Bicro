@@ -1,0 +1,14 @@
+
+*-------- Experiment Config --------*
+Namespace(data_path='/home/lzy/data/f30k', data_name='f30k_precomp', vocab_path='/home/lzy/data/vocab', batch_size=128, num_epochs=40, lr_update=30, learning_rate=0.0002, workers=2, log_step=1000, grad_clip=2.0, margin=0.2, img_dim=2048, word_dim=300, embed_size=1024, sim_dim=256, num_layers=1, bi_gru=True, no_imgnorm=False, no_txtnorm=False, module_name='SGR', sgr_step=3, noise_file='noise_index/f30k_precomp_0.4.npy', noise_ratio=0.4, no_co_training=False, warmup_epoch=10, warmup_model_path='', p_threshold=0.5, soft_margin='exponential', noise_train='noise_soft', noise_tem=0.5, warmup_type='warmup_sele', fit_type='bmm', warmup_rate=0.3, gpu='6', seed=96, output_dir='output/2025-03-15-19-44/train_f30k', saved_model='', id='train_f30k')
+
+*-------- Training --------*
+load and process dataset ...
+load /home/lzy/data/f30k/f30k_precomp / train data: 29000 images, 145000 captions
+load /home/lzy/data/f30k/f30k_precomp / dev data: 5070 images, 5070 captions
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train  data has a size of 145000
+dev  data has a size of 1000
+
+* Warmup
+[1/10] Warmup model_A

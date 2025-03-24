@@ -1,0 +1,1406 @@
+nohup: 忽略输入
+
+*-------- Experiment Config --------*
+Namespace(data_path='/home/lzy/data/f30k', data_name='f30k_precomp', vocab_path='/home/lzy/data/vocab', batch_size=128, num_epochs=40, lr_update=30, learning_rate=0.0002, workers=2, log_step=1000, grad_clip=2.0, margin=0.2, img_dim=2048, word_dim=300, embed_size=1024, sim_dim=256, num_layers=1, bi_gru=True, no_imgnorm=False, no_txtnorm=False, module_name='SGR', sgr_step=3, noise_file='noise_index/f30k_precomp_0.4.npy', noise_ratio=0.4, no_co_training=False, warmup_epoch=10, warmup_model_path='', p_threshold=0.5, soft_margin='exponential', noise_train='noise_soft', noise_tem=0.5, warmup_type='warmup_sele', fit_type='bmm', warmup_rate=0.3, gpu='7', seed=96, output_dir='output/2025-03-22-16-39/train_f30k', saved_model='', id='train_f30k', max_violation=False)
+
+*-------- Training --------*
+load and process dataset ...
+load /home/lzy/data/f30k/f30k_precomp / train data: 29000 images, 145000 captions
+load /home/lzy/data/f30k/f30k_precomp / dev data: 5070 images, 5070 captions
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train  data has a size of 145000
+dev  data has a size of 1000
+Encoding with model 0
+Encode[0/8]	batch  1.363 ( 1.363)	data  0.189 ( 0.189)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.335 ( 0.335)	data  0.220 ( 0.220)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 1.0, 3.0, 152.0, 189.9
+Text to image: 0.3, 2.2, 5.0, 104.0, 102.3
+
+* Warmup
+[1/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.912 ( 0.912)	data  0.356 ( 0.356)	loss 1.3920e+01 (1.3920e+01)
+Warmup Step[1000/1133]	batch  0.212 ( 0.251)	data  0.000 ( 0.001)	loss 4.5296e+00 (5.2453e+00)
+[1/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.679 ( 0.679)	data  0.318 ( 0.318)	loss 1.2693e+01 (1.2693e+01)
+Warmup Step[1000/1133]	batch  0.389 ( 0.263)	data  0.000 ( 0.002)	loss 7.7772e+00 (7.9591e+00)
+Current time: 2025-03-22 16:49:44.892646
+[2/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.589 ( 0.589)	data  0.381 ( 0.381)	loss 4.3466e+00 (4.3466e+00)
+Warmup Step[1000/1133]	batch  0.223 ( 0.258)	data  0.000 ( 0.001)	loss 3.9849e+00 (4.4534e+00)
+[2/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.605 ( 0.605)	data  0.366 ( 0.366)	loss 5.7006e+00 (5.7006e+00)
+Warmup Step[1000/1133]	batch  0.265 ( 0.264)	data  0.001 ( 0.002)	loss 4.6478e+00 (5.4083e+00)
+Current time: 2025-03-22 16:59:37.846994
+[3/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.554 ( 0.554)	data  0.320 ( 0.320)	loss 4.7462e+00 (4.7462e+00)
+Warmup Step[1000/1133]	batch  0.252 ( 0.266)	data  0.000 ( 0.002)	loss 4.9570e+00 (4.5274e+00)
+[3/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.586 ( 0.586)	data  0.333 ( 0.333)	loss 5.0555e+00 (5.0555e+00)
+Warmup Step[1000/1133]	batch  0.261 ( 0.264)	data  0.014 ( 0.002)	loss 4.9805e+00 (5.0958e+00)
+Current time: 2025-03-22 17:09:38.634135
+[4/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.594 ( 0.594)	data  0.350 ( 0.350)	loss 4.9392e+00 (4.9392e+00)
+Warmup Step[1000/1133]	batch  0.223 ( 0.265)	data  0.001 ( 0.002)	loss 5.0419e+00 (4.8442e+00)
+[4/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.531 ( 0.531)	data  0.332 ( 0.332)	loss 5.3057e+00 (5.3057e+00)
+Warmup Step[1000/1133]	batch  0.324 ( 0.266)	data  0.001 ( 0.002)	loss 5.0432e+00 (5.1549e+00)
+Current time: 2025-03-22 17:19:39.654771
+[5/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.528 ( 0.528)	data  0.307 ( 0.307)	loss 4.2418e+00 (4.2418e+00)
+Warmup Step[1000/1133]	batch  0.228 ( 0.264)	data  0.000 ( 0.002)	loss 5.3396e+00 (4.7073e+00)
+[5/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.605 ( 0.605)	data  0.339 ( 0.339)	loss 4.3421e+00 (4.3421e+00)
+Warmup Step[1000/1133]	batch  0.170 ( 0.272)	data  0.000 ( 0.002)	loss 5.0599e+00 (4.9147e+00)
+Current time: 2025-03-22 17:29:47.317956
+[6/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.561 ( 0.561)	data  0.325 ( 0.325)	loss 6.7534e+00 (6.7534e+00)
+Warmup Step[1000/1133]	batch  0.262 ( 0.279)	data  0.001 ( 0.002)	loss 4.2650e+00 (4.6699e+00)
+[6/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.531 ( 0.531)	data  0.340 ( 0.340)	loss 5.1757e+00 (5.1757e+00)
+Warmup Step[1000/1133]	batch  0.264 ( 0.281)	data  0.001 ( 0.002)	loss 4.3415e+00 (4.7986e+00)
+Current time: 2025-03-22 17:40:23.199955
+[7/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.535 ( 0.535)	data  0.301 ( 0.301)	loss 5.0504e+00 (5.0504e+00)
+Warmup Step[1000/1133]	batch  0.209 ( 0.279)	data  0.001 ( 0.002)	loss 5.0529e+00 (4.5954e+00)
+[7/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.549 ( 0.549)	data  0.299 ( 0.299)	loss 5.2174e+00 (5.2174e+00)
+Warmup Step[1000/1133]	batch  0.285 ( 0.276)	data  0.001 ( 0.002)	loss 4.3834e+00 (4.7871e+00)
+Current time: 2025-03-22 17:50:53.817907
+[8/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.552 ( 0.552)	data  0.364 ( 0.364)	loss 4.3801e+00 (4.3801e+00)
+Warmup Step[1000/1133]	batch  0.226 ( 0.279)	data  0.000 ( 0.002)	loss 3.4560e+00 (4.5602e+00)
+[8/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.657 ( 0.657)	data  0.337 ( 0.337)	loss 5.3666e+00 (5.3666e+00)
+Warmup Step[1000/1133]	batch  0.204 ( 0.282)	data  0.000 ( 0.002)	loss 4.7227e+00 (4.7608e+00)
+Current time: 2025-03-22 18:01:27.446525
+[9/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.550 ( 0.550)	data  0.300 ( 0.300)	loss 4.9588e+00 (4.9588e+00)
+Warmup Step[1000/1133]	batch  0.309 ( 0.281)	data  0.001 ( 0.002)	loss 4.6880e+00 (4.5629e+00)
+[9/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.705 ( 0.705)	data  0.445 ( 0.445)	loss 4.3756e+00 (4.3756e+00)
+Warmup Step[1000/1133]	batch  0.217 ( 0.277)	data  0.000 ( 0.002)	loss 4.2984e+00 (4.7041e+00)
+Current time: 2025-03-22 18:12:02.336838
+[10/10] Warmup model_A
+Warmup Step[   0/1133]	batch  0.502 ( 0.502)	data  0.297 ( 0.297)	loss 4.6622e+00 (4.6622e+00)
+Warmup Step[1000/1133]	batch  0.331 ( 0.275)	data  0.004 ( 0.002)	loss 4.9609e+00 (4.5027e+00)
+[10/10] Warmup model_B
+Warmup Step[   0/1133]	batch  0.518 ( 0.518)	data  0.325 ( 0.325)	loss 4.5260e+00 (4.5260e+00)
+Warmup Step[1000/1133]	batch  0.410 ( 0.266)	data  0.001 ( 0.002)	loss 4.1370e+00 (4.6911e+00)
+Current time: 2025-03-22 18:22:15.821015
+
+* Co-training
+
+Epoch [0/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.552 ( 0.552)	data  0.359 ( 0.359)
+Computing losses[1000/1133]	batch  0.228 ( 0.200)	data  0.004 ( 0.002)
+
+Fitting GMM ...
+/home/lzy/paper_code/BiCro-main-base/co_train.py:64: RuntimeWarning: invalid value encountered in divide
+  return self.weighted_likelihood(x, y) / (self.probability(x) + self.eps_nan)
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 96032
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 48968
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/751]	batch  0.966 ( 0.966)	data  0.490 ( 0.490)	loss 2.2471e+02 (2.2471e+02)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 96177
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 48823
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/752]	batch  0.886 ( 0.886)	data  0.510 ( 0.510)	loss 2.4642e+02 (2.4642e+02)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.326 ( 0.326)	data  0.236 ( 0.236)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.447 ( 0.447)	data  0.300 ( 0.300)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.01 s
+Image to text: 0.0, 2.5, 4.0, 138.0, 238.9
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 18:35:23.104949
+
+Epoch [1/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.580 ( 0.580)	data  0.390 ( 0.390)
+Computing losses[1000/1133]	batch  0.225 ( 0.201)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 112109
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 32891
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/876]	batch  0.798 ( 0.798)	data  0.430 ( 0.430)	loss 5.1170e+01 (5.1170e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 26551
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 118449
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/208]	batch  0.660 ( 0.660)	data  0.324 ( 0.324)	loss 5.1781e+01 (5.1781e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.484 ( 0.484)	data  0.354 ( 0.354)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.463 ( 0.463)	data  0.309 ( 0.309)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.0, 2.5, 5.0, 355.0, 301.2
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 18:45:59.908852
+
+Epoch [2/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.622 ( 0.622)	data  0.413 ( 0.413)
+Computing losses[1000/1133]	batch  0.197 ( 0.200)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 114297
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 30703
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/893]	batch  0.703 ( 0.703)	data  0.392 ( 0.392)	loss 5.0940e+01 (5.0940e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 72083
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 72917
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/564]	batch  0.619 ( 0.619)	data  0.331 ( 0.331)	loss 5.1819e+01 (5.1819e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.379 ( 0.379)	data  0.250 ( 0.250)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.370 ( 0.370)	data  0.224 ( 0.224)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.04 s
+Image to text: 0.5, 2.5, 4.0, 334.0, 293.2
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 18:58:47.056714
+
+Epoch [3/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.515 ( 0.515)	data  0.342 ( 0.342)
+Computing losses[1000/1133]	batch  0.187 ( 0.200)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 108361
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 36639
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/847]	batch  0.806 ( 0.806)	data  0.503 ( 0.503)	loss 5.1128e+01 (5.1128e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119438
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25562
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/934]	batch  0.751 ( 0.751)	data  0.434 ( 0.434)	loss 5.1654e+01 (5.1654e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.332 ( 0.332)	data  0.227 ( 0.227)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.433 ( 0.433)	data  0.301 ( 0.301)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.01 s
+Image to text: 0.5, 2.0, 3.5, 196.0, 247.7
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 19:13:42.317600
+
+Epoch [4/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.656 ( 0.656)	data  0.452 ( 0.452)
+Computing losses[1000/1133]	batch  0.368 ( 0.197)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 111170
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 33830
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/869]	batch  0.887 ( 0.887)	data  0.487 ( 0.487)	loss 5.1159e+01 (5.1159e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 124878
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 20122
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/976]	batch  0.765 ( 0.765)	data  0.464 ( 0.464)	loss 5.1501e+01 (5.1501e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.347 ( 0.347)	data  0.249 ( 0.249)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.02 s
+Encoding with model 1
+Encode[0/8]	batch  0.403 ( 0.403)	data  0.236 ( 0.236)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.01 s
+Image to text: 0.5, 1.5, 4.0, 142.0, 234.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 19:28:52.011571
+
+Epoch [5/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.564 ( 0.564)	data  0.415 ( 0.415)
+Computing losses[1000/1133]	batch  0.295 ( 0.202)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 116643
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 28357
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/912]	batch  0.880 ( 0.880)	data  0.471 ( 0.471)	loss 5.1221e+01 (5.1221e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119784
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25216
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/936]	batch  0.822 ( 0.822)	data  0.464 ( 0.464)	loss 5.1348e+01 (5.1348e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.347 ( 0.347)	data  0.236 ( 0.236)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.436 ( 0.436)	data  0.262 ( 0.262)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.01 s
+Image to text: 1.0, 2.0, 4.5, 252.0, 271.8
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 19:44:07.652734
+
+Epoch [6/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.672 ( 0.672)	data  0.467 ( 0.467)
+Computing losses[1000/1133]	batch  0.222 ( 0.200)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 111986
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 33014
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/875]	batch  0.742 ( 0.742)	data  0.424 ( 0.424)	loss 5.1217e+01 (5.1217e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 111183
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 33817
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/869]	batch  1.380 ( 1.380)	data  1.081 ( 1.081)	loss 5.1316e+01 (5.1316e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.411 ( 0.411)	data  0.306 ( 0.306)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.406 ( 0.406)	data  0.251 ( 0.251)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 1.5, 3.5, 252.0, 253.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 19:58:45.538127
+
+Epoch [7/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.604 ( 0.604)	data  0.381 ( 0.381)
+Computing losses[1000/1133]	batch  0.210 ( 0.203)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119916
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25084
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/937]	batch  0.779 ( 0.779)	data  0.413 ( 0.413)	loss 5.1201e+01 (5.1201e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119920
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25080
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/937]	batch  0.737 ( 0.737)	data  0.439 ( 0.439)	loss 5.1284e+01 (5.1284e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.520 ( 0.520)	data  0.375 ( 0.375)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.361 ( 0.361)	data  0.224 ( 0.224)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 1.5, 3.5, 220.0, 258.1
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 20:14:10.489952
+
+Epoch [8/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.626 ( 0.626)	data  0.385 ( 0.385)
+Computing losses[1000/1133]	batch  0.211 ( 0.197)	data  0.001 ( 0.003)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119429
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25571
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/934]	batch  0.871 ( 0.871)	data  0.475 ( 0.475)	loss 5.1215e+01 (5.1215e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 99469
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 45531
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/778]	batch  0.727 ( 0.727)	data  0.416 ( 0.416)	loss 5.1268e+01 (5.1268e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.461 ( 0.461)	data  0.353 ( 0.353)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.557 ( 0.557)	data  0.372 ( 0.372)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.01 s
+Image to text: 0.5, 2.0, 4.5, 180.0, 225.3
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 20:28:29.377692
+
+Epoch [9/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.664 ( 0.664)	data  0.473 ( 0.473)
+Computing losses[1000/1133]	batch  0.155 ( 0.204)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 117455
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 27545
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/918]	batch  0.849 ( 0.849)	data  0.454 ( 0.454)	loss 5.1219e+01 (5.1219e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 104698
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 40302
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/818]	batch  1.270 ( 1.270)	data  0.823 ( 0.823)	loss 5.1279e+01 (5.1279e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.354 ( 0.354)	data  0.235 ( 0.235)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.376 ( 0.376)	data  0.237 ( 0.237)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.0, 3.0, 6.0, 155.0, 190.9
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 20:43:26.378882
+
+Epoch [10/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.610 ( 0.610)	data  0.412 ( 0.412)
+Computing losses[1000/1133]	batch  0.197 ( 0.202)	data  0.000 ( 0.003)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 109450
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 35550
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/856]	batch  0.926 ( 0.926)	data  0.549 ( 0.549)	loss 5.1230e+01 (5.1230e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 101596
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 43404
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/794]	batch  0.732 ( 0.732)	data  0.447 ( 0.447)	loss 5.1240e+01 (5.1240e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.445 ( 0.445)	data  0.328 ( 0.328)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.394 ( 0.394)	data  0.258 ( 0.258)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 3.0, 5.0, 153.0, 270.8
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 20:57:28.521602
+
+Epoch [11/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.540 ( 0.540)	data  0.371 ( 0.371)
+Computing losses[1000/1133]	batch  0.271 ( 0.202)	data  0.000 ( 0.003)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 103836
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 41164
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/812]	batch  0.749 ( 0.749)	data  0.427 ( 0.427)	loss 5.1220e+01 (5.1220e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 107708
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 37292
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/842]	batch  0.790 ( 0.790)	data  0.453 ( 0.453)	loss 5.1230e+01 (5.1230e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.484 ( 0.484)	data  0.355 ( 0.355)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.370 ( 0.370)	data  0.233 ( 0.233)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 5.0, 147.0, 212.9
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 21:11:27.178692
+
+Epoch [12/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.744 ( 0.744)	data  0.483 ( 0.483)
+Computing losses[1000/1133]	batch  0.252 ( 0.200)	data  0.000 ( 0.003)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 117073
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 27927
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/915]	batch  0.818 ( 0.818)	data  0.417 ( 0.417)	loss 5.1224e+01 (5.1224e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 102532
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 42468
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/802]	batch  0.670 ( 0.670)	data  0.386 ( 0.386)	loss 5.1249e+01 (5.1249e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.409 ( 0.409)	data  0.281 ( 0.281)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.376 ( 0.376)	data  0.228 ( 0.228)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 3.0, 5.0, 147.0, 183.1
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 21:25:47.779446
+
+Epoch [13/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.616 ( 0.616)	data  0.419 ( 0.419)
+Computing losses[1000/1133]	batch  0.173 ( 0.196)	data  0.004 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 97006
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 47994
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/758]	batch  0.733 ( 0.733)	data  0.448 ( 0.448)	loss 5.1222e+01 (5.1222e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 84693
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 60307
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/662]	batch  0.705 ( 0.705)	data  0.389 ( 0.389)	loss 5.1232e+01 (5.1232e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.360 ( 0.360)	data  0.227 ( 0.227)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.353 ( 0.353)	data  0.219 ( 0.219)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.0, 3.0, 6.0, 253.0, 260.3
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 21:37:16.293460
+
+Epoch [14/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.476 ( 0.476)	data  0.313 ( 0.313)
+Computing losses[1000/1133]	batch  0.141 ( 0.167)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 90514
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 54486
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/708]	batch  0.670 ( 0.670)	data  0.406 ( 0.406)	loss 5.1215e+01 (5.1215e+01)
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.383 ( 0.383)	data  0.242 ( 0.242)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.385 ( 0.385)	data  0.240 ( 0.240)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.0, 5.0, 209.0, 252.2
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 21:44:23.127046
+
+Epoch [15/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.590 ( 0.590)	data  0.411 ( 0.411)
+Computing losses[1000/1133]	batch  0.171 ( 0.192)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 94984
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 50016
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/743]	batch  0.876 ( 0.876)	data  0.446 ( 0.446)	loss 5.1212e+01 (5.1212e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 86164
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 58836
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/674]	batch  0.839 ( 0.839)	data  0.529 ( 0.529)	loss 5.1225e+01 (5.1225e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.444 ( 0.444)	data  0.258 ( 0.258)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.382 ( 0.382)	data  0.240 ( 0.240)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 3.0, 5.5, 159.0, 302.2
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 21:56:41.275553
+
+Epoch [16/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.562 ( 0.562)	data  0.355 ( 0.355)
+Computing losses[1000/1133]	batch  0.387 ( 0.197)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 106955
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 38045
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/836]	batch  0.873 ( 0.873)	data  0.470 ( 0.470)	loss 5.1221e+01 (5.1221e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 93181
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 51819
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/728]	batch  0.750 ( 0.750)	data  0.381 ( 0.381)	loss 5.1228e+01 (5.1228e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.409 ( 0.409)	data  0.262 ( 0.262)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.350 ( 0.350)	data  0.220 ( 0.220)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 6.0, 390.0, 332.9
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:09:56.169149
+
+Epoch [17/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.505 ( 0.505)	data  0.353 ( 0.353)
+Computing losses[1000/1133]	batch  0.173 ( 0.197)	data  0.000 ( 0.002)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 7420
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 137580
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[ 0/58]	batch  0.740 ( 0.740)	data  0.371 ( 0.371)	loss 5.1232e+01 (5.1232e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.389 ( 0.389)	data  0.259 ( 0.259)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.356 ( 0.356)	data  0.227 ( 0.227)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.0, 4.0, 393.0, 327.3
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:14:04.419102
+
+Epoch [18/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.510 ( 0.510)	data  0.308 ( 0.308)
+Computing losses[1000/1133]	batch  0.141 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 119472
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 25528
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[  0/934]	batch  0.610 ( 0.610)	data  0.322 ( 0.322)	loss 5.1227e+01 (5.1227e+01)
+
+Model B training ...
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train labeled data has a size of 7303
+=> load noisy index from noise_index/f30k_precomp_0.4.npy
+train unlabeled data has a size of 137697
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+/home/lzy/paper_code/BiCro-main-base/data.py:106: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:254.)
+  torch.Tensor([self.probability[index]]),
+Training Step[ 0/58]	batch  0.720 ( 0.720)	data  0.391 ( 0.391)	loss 5.1240e+01 (5.1240e+01)
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.386 ( 0.386)	data  0.249 ( 0.249)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.387 ( 0.387)	data  0.263 ( 0.263)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:22:34.168904
+
+Epoch [19/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.471 ( 0.471)	data  0.314 ( 0.314)
+Computing losses[1000/1133]	batch  0.165 ( 0.165)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.399 ( 0.399)	data  0.273 ( 0.273)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.425 ( 0.425)	data  0.301 ( 0.301)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:25:45.461652
+
+Epoch [20/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.473 ( 0.473)	data  0.323 ( 0.323)
+Computing losses[1000/1133]	batch  0.197 ( 0.164)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.403 ( 0.403)	data  0.266 ( 0.266)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.407 ( 0.407)	data  0.263 ( 0.263)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:28:55.450782
+
+Epoch [21/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.504 ( 0.504)	data  0.325 ( 0.325)
+Computing losses[1000/1133]	batch  0.161 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.380 ( 0.380)	data  0.246 ( 0.246)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.372 ( 0.372)	data  0.238 ( 0.238)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:32:08.574234
+
+Epoch [22/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.486 ( 0.486)	data  0.334 ( 0.334)
+Computing losses[1000/1133]	batch  0.158 ( 0.167)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.381 ( 0.381)	data  0.252 ( 0.252)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.368 ( 0.368)	data  0.245 ( 0.245)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:35:21.836011
+
+Epoch [23/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.455 ( 0.455)	data  0.297 ( 0.297)
+Computing losses[1000/1133]	batch  0.150 ( 0.163)	data  0.000 ( 0.000)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.374 ( 0.374)	data  0.246 ( 0.246)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.385 ( 0.385)	data  0.262 ( 0.262)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:38:29.648230
+
+Epoch [24/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.424 ( 0.424)	data  0.271 ( 0.271)
+Computing losses[1000/1133]	batch  0.131 ( 0.164)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.416 ( 0.416)	data  0.267 ( 0.267)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.360 ( 0.360)	data  0.226 ( 0.226)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:41:40.585914
+
+Epoch [25/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.525 ( 0.525)	data  0.310 ( 0.310)
+Computing losses[1000/1133]	batch  0.166 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.367 ( 0.367)	data  0.233 ( 0.233)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.389 ( 0.389)	data  0.262 ( 0.262)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:44:52.211887
+
+Epoch [26/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.453 ( 0.453)	data  0.302 ( 0.302)
+Computing losses[1000/1133]	batch  0.147 ( 0.165)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.407 ( 0.407)	data  0.264 ( 0.264)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.364 ( 0.364)	data  0.228 ( 0.228)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:48:04.500073
+
+Epoch [27/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.478 ( 0.478)	data  0.331 ( 0.331)
+Computing losses[1000/1133]	batch  0.150 ( 0.168)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.398 ( 0.398)	data  0.262 ( 0.262)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.365 ( 0.365)	data  0.238 ( 0.238)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:51:18.131999
+
+Epoch [28/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.449 ( 0.449)	data  0.295 ( 0.295)
+Computing losses[1000/1133]	batch  0.131 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.374 ( 0.374)	data  0.239 ( 0.239)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.360 ( 0.360)	data  0.234 ( 0.234)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:54:29.086886
+
+Epoch [29/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.473 ( 0.473)	data  0.317 ( 0.317)
+Computing losses[1000/1133]	batch  0.224 ( 0.164)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.360 ( 0.360)	data  0.224 ( 0.224)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.353 ( 0.353)	data  0.229 ( 0.229)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 22:57:40.518439
+
+Epoch [30/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.548 ( 0.548)	data  0.355 ( 0.355)
+Computing losses[1000/1133]	batch  0.149 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.373 ( 0.373)	data  0.246 ( 0.246)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.414 ( 0.414)	data  0.292 ( 0.292)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:00:52.427399
+
+Epoch [31/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.415 ( 0.415)	data  0.268 ( 0.268)
+Computing losses[1000/1133]	batch  0.216 ( 0.166)	data  0.004 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.376 ( 0.376)	data  0.241 ( 0.241)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.370 ( 0.370)	data  0.247 ( 0.247)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:04:03.591221
+
+Epoch [32/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.433 ( 0.433)	data  0.271 ( 0.271)
+Computing losses[1000/1133]	batch  0.144 ( 0.167)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.419 ( 0.419)	data  0.289 ( 0.289)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.384 ( 0.384)	data  0.260 ( 0.260)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:07:16.847281
+
+Epoch [33/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.530 ( 0.530)	data  0.340 ( 0.340)
+Computing losses[1000/1133]	batch  0.171 ( 0.165)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.378 ( 0.378)	data  0.240 ( 0.240)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.365 ( 0.365)	data  0.232 ( 0.232)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:10:27.815991
+
+Epoch [34/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.471 ( 0.471)	data  0.317 ( 0.317)
+Computing losses[1000/1133]	batch  0.153 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.402 ( 0.402)	data  0.266 ( 0.266)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.353 ( 0.353)	data  0.228 ( 0.228)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:13:38.525628
+
+Epoch [35/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.493 ( 0.493)	data  0.317 ( 0.317)
+Computing losses[1000/1133]	batch  0.167 ( 0.163)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.355 ( 0.355)	data  0.221 ( 0.221)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.367 ( 0.367)	data  0.245 ( 0.245)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:16:48.292153
+
+Epoch [36/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.409 ( 0.409)	data  0.257 ( 0.257)
+Computing losses[1000/1133]	batch  0.140 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.367 ( 0.367)	data  0.232 ( 0.232)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.354 ( 0.354)	data  0.232 ( 0.232)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:19:59.332532
+
+Epoch [37/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.449 ( 0.449)	data  0.292 ( 0.292)
+Computing losses[1000/1133]	batch  0.170 ( 0.164)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.392 ( 0.392)	data  0.266 ( 0.266)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.367 ( 0.367)	data  0.247 ( 0.247)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:23:09.345352
+
+Epoch [38/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.505 ( 0.505)	data  0.325 ( 0.325)
+Computing losses[1000/1133]	batch  0.153 ( 0.168)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.390 ( 0.390)	data  0.256 ( 0.256)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.00 s
+Encoding with model 1
+Encode[0/8]	batch  0.380 ( 0.380)	data  0.253 ( 0.253)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:26:23.324884
+
+Epoch [39/40]
+Split dataset ...
+Computing losses[   0/1133]	batch  0.473 ( 0.473)	data  0.322 ( 0.322)
+Computing losses[1000/1133]	batch  0.128 ( 0.166)	data  0.000 ( 0.001)
+
+Fitting GMM ...
+
+Model A training ...
+
+Model B training ...
+
+Validattion ...
+Encoding with model 0
+Encode[0/8]	batch  0.401 ( 0.401)	data  0.267 ( 0.267)
+Computing similarity from model 0
+Calculate similarity time with model 0: 0.01 s
+Encoding with model 1
+Encode[0/8]	batch  0.392 ( 0.392)	data  0.260 ( 0.260)
+Computing similarity from model 1
+Calculate similarity time with model 1: 0.00 s
+Image to text: 0.5, 2.5, 4.5, 386.0, 324.4
+Text to image: 0.5, 2.5, 5.0, 100.0, 100.5
+Current time: 2025-03-22 23:29:35.448876
+
+*-------- Testing --------*
+training epoch:  9
+Namespace(data_path='/home/lzy/data/f30k', data_name='f30k_precomp', vocab_path='/home/lzy/data/vocab', batch_size=128, num_epochs=40, lr_update=30, learning_rate=0.0002, workers=0, log_step=1000, grad_clip=2.0, margin=0.2, img_dim=2048, word_dim=300, embed_size=1024, sim_dim=256, num_layers=1, bi_gru=True, no_imgnorm=False, no_txtnorm=False, module_name='SGR', sgr_step=3, noise_file='noise_index/f30k_precomp_0.4.npy', noise_ratio=0.4, no_co_training=False, warmup_epoch=10, warmup_model_path='', p_threshold=0.5, soft_margin='exponential', noise_train='noise_soft', noise_tem=0.5, warmup_type='warmup_sele', fit_type='bmm', warmup_rate=0.3, gpu='7', seed=96, output_dir='output/2025-03-22-16-39/train_f30k', saved_model='', id='train_f30k', max_violation=False, vocab_size=8481)
+load and process dataset ...
+load /home/lzy/data/f30k/f30k_precomp / test data: 5000 images, 5000 captions
+test  data has a size of 5000
+Computing results...
+Encode[ 0/40]	batch  0.120 ( 0.120)	data  0.021 ( 0.021)
+Encode[10/40]	batch  0.116 ( 0.098)	data  0.022 ( 0.025)
+Encode[20/40]	batch  0.088 ( 0.094)	data  0.022 ( 0.025)
+Encode[30/40]	batch  0.154 ( 0.097)	data  0.022 ( 0.024)
+Encode[ 0/40]	batch  0.132 ( 0.132)	data  0.026 ( 0.026)
+Encode[10/40]	batch  0.117 ( 0.098)	data  0.025 ( 0.025)
+Encode[20/40]	batch  0.088 ( 0.094)	data  0.025 ( 0.025)
+Encode[30/40]	batch  0.160 ( 0.097)	data  0.028 ( 0.026)
+Images: 1000, Captions: 5000
+calculate similarity time: 0.0518193244934082
+rsum: 3.0
+Average i2t Recall: 0.5
+Image to text: 0.2 0.4 0.8 751.0 1065.8
+Average t2i Recall: 0.5
+Text to image: 0.1 0.5 1.0 500.0 500.5
+Current time: 2025-03-22 23:29:52.952546
